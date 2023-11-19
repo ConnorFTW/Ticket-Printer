@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css" type="text/css">
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <script src="./index.js" type="text/javascript"></script>
+    <script src="options.js" defer></script>
+    <script src="script.js" defer></script>
+    <title>Your Page Title</title>
+</head>
+<body>
+    <div id="container">
+        <!-- Display the Main Image of Ticket Printer ---- THE TICKET PRINTER -->
+        <img src="Main.png" alt="Main Image" class="main-image2">
+        <!-- The TextBoxes for the user info shit (EX: Citation Reason)-->
+        <input type="text" id="textbox1" placeholder="Issuing Officer">
+        <input type="text" id="textbox3" placeholder="Citations Fine">
+        <input type="text" id="textbox4" placeholder="Citation Date">
+        <input type="text" id="textbox5" placeholder="Vehicle Type">
+        <input type="text" id="textbox6" placeholder="Vehicle Plate">		
+	
+		
+		<!-- Submit button to submit all their data  -->
+            <input type="submit" id="submitButton" value="Submit">
+		</div>
+		
+    </div>
+
+
+     		<!-- Set the date automatticly in the date slot  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const formattedDate = `${year}/${month}/${day}`;
+
+            document.getElementById('textbox4').value = formattedDate;
+        });
+    </script>
+
+</body>
+</html>
+
+	
+		
+		<!-- DropDown Menu For Citiaton Reasons  -->
+		 <select id="reasonDropdown" multiple></select>
+
+    <!-- Set the options.js file ((IF CHANGE FILE NAME NEEDS CHANGE HERE)) -->
+    <script src="options.js" defer></script>
+
+		<!-- Code for Citations Reasons  -->
+
+    <script defer>
+        // Wait for the optionsData to be defined
+        document.addEventListener('DOMContentLoaded', function () {
+            // Populate the dropdown
+            const dropdown = document.getElementById('reasonDropdown');
+
+            optionsData.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option.value;
+                optionElement.text = option.label;
+                dropdown.appendChild(optionElement);
+            });
+        });
+    </script>
+	
+	
+<!-- Your HTML code with added id to identify the textbox and image elements -->
+<div id="myTextbox" class="textbox">Issuing Officer</div>
+<div id="myTextbox2" class="textbox">Citation Reason</div>
+<div id="myTextbox3" class="textbox">Citations Fine</div>
+<div id="myTextbox4" class="textbox">Citation Date</div>
+<div id="myTextbox5" class="textbox">17:25</div>
+<div id="myTextbox6" class="textbox">Issueing Department</div>
+<div id="myTextbox7" class="textbox">Press E to Close -- Press Y to Sign</div>
+<img src="Main2.png" alt="Main Image" class="main-image3" id="hiddenImage">
+
+<script>
+  // Function to toggle the visibility of the textbox
+  function toggleTextbox(visibility) {
+    const myTextbox = document.getElementById('myTextbox');
+    myTextbox.style.display = visibility ? 'block' : 'none';
+	myTextbox2.style.display = visibility ? 'block' : 'none';
+	myTextbox3.style.display = visibility ? 'block' : 'none';
+	myTextbox4.style.display = visibility ? 'block' : 'none';
+	myTextbox5.style.display = visibility ? 'block' : 'none';
+	myTextbox6.style.display = visibility ? 'block' : 'none';
+	myTextbox7.style.display = visibility ? 'block' : 'none';
+  }
+
+  // Function to toggle the visibility of the image
+  function toggleImage(visibility) {
+    const hiddenImage = document.getElementById('hiddenImage');
+    hiddenImage.style.display = visibility ? 'block' : 'none';
+  }
+
+  // Listen for messages from Lua
+  window.addEventListener('message', function (event) {
+    // Ensure that the event data is defined
+    if (event.data) {
+      if (event.data.visibilityTextbox !== undefined) {
+        toggleTextbox(event.data.visibilityTextbox);
+      }
+      if (event.data.visibilityImage !== undefined) {
+        toggleImage(event.data.visibilityImage);
+      }
+    }
+  });
+
+  // Set the textbox and image to initial off state
+  document.addEventListener('DOMContentLoaded', function() {
+    toggleTextbox(false);
+    toggleImage(false);
+  });
+</script>
+
+
+
+
+<script>
+    // Listen for NUI messages
+    window.addEventListener('message', function (event) {
+        var data = event.data;
+
+        // Check if the message is of type 'setText'
+        if (data.type === 'setText') {
+            // Set the text content
+            var myTextbox = document.getElementById("myTextbox");
+            if (myTextbox) {
+                myTextbox.textContent = data.text;
+            } else {
+                console.error("Element with ID 'myTextbox' not found.");
+            }
+        }
+    });
+</script>
+
+<!-- Include this script in your HTML file -->
+<script>
+    // Listen for NUI messages
+    window.addEventListener('message', function (event) {
+        var data = event.data;
+
+        // Check if the message is of type 'setTextCitationDate'
+        if (data.type === 'setTextCitationDate') {
+            // Set the text content for Citation Date
+            var myTextbox4 = document.getElementById("myTextbox4");
+            if (myTextbox4) {
+                myTextbox4.textContent = data.text;
+            } else {
+                console.error("Element with ID 'myTextbox4' not found.");
+            }
+        }
+    });
+</script>
+
+
+
+<script>
+        // Function to fetch the issueing department text from Lua
+        function getIssueingDepartmentText() {
+            return new Promise((resolve, reject) => {
+                fetch('http://'+location.host+'/getIssueingDepartmentText', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => resolve(data.text))
+                .catch(error => reject(error));
+            });
+        }
+
+        // Function to update the text content of the HTML element
+        async function updateIssueingDepartmentText() {
+            const issueingDepartmentText = await getIssueingDepartmentText();
+            document.getElementById('myTextbox6').textContent = issueingDepartmentText;
+        }
+
+        // Update the text content on page load
+        window.onload = updateIssueingDepartmentText;
+    </script>
+	
+	
+ <script>
+        // Function to update the text content of the HTML element
+        function updateIssueingDepartmentText(text) {
+            document.getElementById('myTextbox6').textContent = text;
+        }
+
+        // Register NUI callback to handle messages
+        window.addEventListener('message', function (event) {
+            var data = event.data;
+
+            if (data.type === 'updateIssueingDepartmentText') {
+                updateIssueingDepartmentText(data.text);
+            }
+        });
+
+        // Close the UI when the document is loaded (for testing)
+        document.addEventListener('DOMContentLoaded', function() {
+            updateIssueingDepartmentText("Department text from HTML");
+        });
+    </script>
+	
+	
+	<script>
+    // Listen for NUI messages
+    window.addEventListener('message', function (event) {
+        var data = event.data;
+
+        // Check if the message is of type 'setTextCitationDate'
+        if (data.type === 'setTextCitationDate') {
+            // Set the text content for Citation Date
+            var myTextbox4 = document.getElementById("myTextbox4");
+            if (myTextbox4) {
+                myTextbox4.textContent = data.text;
+            } else {
+                console.error("Element with ID 'myTextbox4' not found.");
+            }
+        }
+
+        // Check if the message is of type 'setTextForTextbox2'
+        if (data.type === 'setTextForTextbox2') {
+            // Set the text content for myTextbox2
+            var myTextbox2 = document.getElementById("myTextbox2");
+            if (myTextbox2) {
+                myTextbox2.textContent = data.text;
+            } else {
+                console.error("Element with ID 'myTextbox2' not found.");
+            }
+        }
+    });
+</script>
+
+
+<script>
+    // Listen for NUI messages
+    window.addEventListener('message', function (event) {
+        var data = event.data;
+
+        // Check if the message is of type 'setTextCitationDate'
+        if (data.type === 'setTextCitationDate') {
+            // Set the text content for Citation Date
+            var myTextbox4 = document.getElementById("myTextbox4");
+            if (myTextbox4) {
+                myTextbox4.textContent = data.text;
+            } else {
+                console.error("Element with ID 'myTextbox4' not found.");
+            }
+        }
+
+        // Check if the message is of type 'setTextForTextbox2'
+        if (data.type === 'setTextForTextbox2') {
+            // Set the text content for myTextbox2
+            var myTextbox2 = document.getElementById("myTextbox2");
+            if (myTextbox2) {
+                myTextbox2.textContent = data.text;
+            } else {
+                console.error("Element with ID 'myTextbox2' not found.");
+            }
+        }
+
+        // Check if the message is of type 'setTextCitationsFine'
+        if (data.type === 'setTextCitationsFine') {
+            // Set the text content for myTextbox3
+            var myTextbox3 = document.getElementById("myTextbox3");
+            if (myTextbox3) {
+                myTextbox3.textContent = data.text;
+            } else {
+                console.error("Element with ID 'myTextbox3' not found.");
+            }
+        }
+    });
+</script>
+
+
+<script>
+    // Listen for NUI messages
+    window.addEventListener('message', function (event) {
+        var data = event.data;
+
+        // Check if the message is of type 'setTextPressEToClose'
+        if (data.type === 'setTextPressEToClose') {
+            // Set the text content for myTextbox7
+            var myTextbox7 = document.getElementById("myTextbox7");
+            if (myTextbox7) {
+                myTextbox7.textContent = data.text;
+            } else {
+                console.error("Element with ID 'myTextbox7' not found.");
+            }
+        }
+    });
+</script>

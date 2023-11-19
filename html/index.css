@@ -1,0 +1,240 @@
+body {
+    background: none !important;
+}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico&display=swap">
+
+
+/* styles.css */
+/* styles.css */
+.main-image {
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  width: 1000px !important; /* Set a specific width with !important */
+  height: 1000px; !important;/* Set a specific height (adjust as needed) */
+  position: relative;
+  top: 20px;
+  left: 0px !important;
+}
+
+.main-image2 {
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  width: 1000px !important; /* Set a specific width with !important */
+  height: 1000px; !important;/* Set a specific height (adjust as needed) */
+  position: relative;
+  top: 20px;
+  left: 0px !important;
+}
+
+input[type="text"] {
+    width: 100% !important; /* Make sure the width takes precedence */
+    padding: 10px !important;
+    margin: 5px 0 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Position and size styling for all text input boxes */
+#textbox1 {
+    position: absolute !important;
+    top: 545px !important; /* Adjust the vertical position */
+    left: 834px !important; /* Adjust the horizontal position */
+    width: 90px !important; /* Adjust the width */
+    height: 10px !important; /* Adjust the height */
+}
+
+#textbox2 {
+    position: absolute !important;
+    top: 462px !important; /* Adjust the vertical position */
+    left: 834px !important; /* Adjust the horizontal position */
+    width: 90px !important; /* Adjust the width */
+    height: 10px !important; /* Adjust the height */
+}
+
+/* Style for the dropdown container */
+#reasonDropdown {
+ width: 120px !important; /* Adjust the width */
+    height: 60px !important; /* Adjust the height */    padding: 10px;
+    font-size: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+    
+    /* Position the dropdown */
+    position: relative;
+ top: -540px !important; /* Adjust the vertical position */
+    left: 830px !important; /* Adjust the horizontal position */
+}
+
+
+
+#textbox3 {
+    position: absolute !important;
+    top: 462px !important; /* Adjust the vertical position */
+    left: 960px !important; /* Adjust the horizontal position */
+    width: 90px !important; /* Adjust the width */
+    height: 10px !important; /* Adjust the height */
+}
+
+#textbox4 {
+    position: absolute !important;
+    top: 545px !important; /* Adjust the vertical position */
+    left: 960px !important; /* Adjust the horizontal position */
+    width: 90px !important; /* Adjust the width */
+    height: 10px !important; /* Adjust the height */
+}
+
+#textbox5 {
+    position: absolute !important;
+    top: 710px !important; /* Adjust the vertical position */
+    left: 960px !important; /* Adjust the horizontal position */
+    width: 90px !important; /* Adjust the width */
+    height: 10px !important; /* Adjust the height */
+}
+
+
+#textbox6 {
+    position: absolute !important;
+    top: 710px !important; /* Adjust the vertical position */
+    left: 834px !important; /* Adjust the horizontal position */
+    width: 90px !important; /* Adjust the width */
+    height: 10px !important; /* Adjust the height */
+}
+
+input[type="submit"] {
+	 position: absolute;
+    bottom: 285px; /* Adjust this value as needed */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding around the text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor on hover */
+    margin-top: 10px; /* Margin from the textboxes */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
+.visible {
+    display: block !important;
+}
+
+.main-image {
+    display: none;
+}
+
+/* css/styles.css */
+        
+#hiddenImage {
+  width: 600px; /* Set the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 10px; /* Add margin-top for spacing */
+  position: absolute; /* Set position to absolute */
+  top: 50%; /* Align to the vertical center */
+   left: 80%; /* Align to the horizontal center */
+  transform: translate(-50%, -50%); /* Center the image precisely */
+}
+
+
+
+
+
+.textbox {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#myTextbox,
+#myTextbox2,
+#myTextbox3,
+#myTextbox4,
+#myTextbox5,
+#myTextbox6 {
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 0px solid #ccc;
+  border-radius: 0px;
+  position: absolute;
+  z-index: 1000; /* Adjust the z-index as needed */
+}
+
+
+
+#myTextbox {
+  width: 250px;
+  height: 40px;
+  color: #000000;
+  left: 67%;
+  top: 77%;
+}
+
+#myTextbox2 {
+  width: 130px;
+  height: 74px;
+  color: #000000;
+  left: 67.4%;
+  top: 35.7%;
+    font-size: 13px; /* Adjust the font size as needed */
+}
+
+#myTextbox3 {
+  width: 200px;
+  height: 50px;
+  color: #000000;
+	left: 75.8%;
+  top: 35.7%;
+      font-size: 13px; /* Adjust the font size as needed */
+}
+
+#myTextbox4 {
+  width: 80px;
+  height: 80px;
+  color: #000000;
+  left: 80.4%;
+  top: 20.7%;
+    font-size: 13px; /* Adjust the font size as needed */
+}
+
+
+#myTextbox5 {
+  width: 70px;
+  height: 45px;
+  color: #000000;
+  left: 90.7%;
+  top: 20.61%;
+    font-size: 13px; /* Adjust the font size as needed */
+}
+
+#myTextbox6 {
+  width: 270px;
+  height: 60px;
+  color: #000000;
+  left: 82.4%;
+  top: 22.9%;
+}
+
+#myTextbox7 {
+	    position: absolute; /* or absolute, or fixed, depending on your layout needs */
+  width: 200px;
+  height: 80px;
+  color: #000000;
+  left: 77.4%;
+  top: 57.7%;
+    font-size: 17px; /* Adjust the font size as needed */
+	    z-index: 1000; /* Adjust the value based on your needs */
+
+}
+
+
